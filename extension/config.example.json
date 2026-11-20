@@ -1,0 +1,24 @@
+{
+  "trueforge": {
+    "serverUrl": "http://localhost:8790",
+    "primaryModel": {
+      "provider": "openai-compatible",
+      "endpoint": "http://localhost:11434/v1",
+      "model": "qwen2.5-coder:7b",
+      "apiKey": "YOUR_LOCAL_OR_REMOTE_KEY_HERE"
+    },
+    "fallbackModel": {
+      "provider": "trueforge-gateway",
+      "model": "claude-3-5-sonnet",
+      "apiKey": "YOUR_FALLBACK_KEY_HERE"
+    },
+    "contextBudgetTokens": 16384,
+    "tools": [
+      "read_file",
+      "search_workspace",
+      "propose_diff",
+      "run_terminal_command"
+    ]
+  }
+}
+

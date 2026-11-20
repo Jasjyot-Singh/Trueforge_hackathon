@@ -1,0 +1,113 @@
+{
+  "name": "trueforge-coding-agent",
+  "displayName": "TrueForge Coding Agent",
+  "description": "Editor-native VS Code Coding Agent powered by TrueForge agent harness",
+  "version": "1.0.0",
+  "publisher": "forgeathon-team",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "AI",
+    "Programming Languages",
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "trueforge.inlineEdit",
+        "title": "TrueForge: Inline Edit",
+        "category": "TrueForge"
+      },
+      {
+        "command": "trueforge.openAgentPanel",
+        "title": "TrueForge: Open Agent Panel",
+        "category": "TrueForge"
+      },
+      {
+        "command": "trueforge.cancelGeneration",
+        "title": "TrueForge: Cancel Generation",
+        "category": "TrueForge"
+      },
+      {
+        "command": "trueforge.acceptDiff",
+        "title": "TrueForge: Accept Diff",
+        "category": "TrueForge"
+      },
+      {
+        "command": "trueforge.rejectDiff",
+        "title": "TrueForge: Reject Diff",
+        "category": "TrueForge"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "trueforge.inlineEdit",
+        "key": "ctrl+k",
+        "mac": "cmd+k",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "trueforge.cancelGeneration",
+        "key": "escape",
+        "when": "trueforge.isGenerating"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "trueforge-sidebar",
+          "title": "TrueForge Agent",
+          "icon": "resources/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "trueforge-sidebar": [
+        {
+          "type": "webview",
+          "id": "trueforge.agentView",
+          "name": "Agent Session"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "TrueForge Agent",
+      "properties": {
+        "trueforge.serverUrl": {
+          "type": "string",
+          "default": "http://localhost:8790",
+          "description": "TrueForge local server URL"
+        },
+        "trueforge.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Primary Model API Key or TrueForge Token"
+        },
+        "trueforge.fallbackModel": {
+          "type": "string",
+          "default": "gpt-4o-mini",
+          "description": "Fallback model when primary model provider is unreachable"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  }
+}
+
