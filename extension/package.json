@@ -4,6 +4,10 @@
   "description": "Editor-native VS Code Coding Agent powered by TrueForge agent harness",
   "version": "1.0.0",
   "publisher": "forgeathon-team",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jasjyot-Singh/Trueforge_hackathon.git"
+  },
   "engines": {
     "vscode": "^1.85.0"
   },
