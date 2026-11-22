@@ -87,10 +87,16 @@ export function activate(context: vscode.ExtensionContext) {
     }
   };
 
+  const openPanelCmd = vscode.commands.registerCommand('trueforge.openAgentPanel', () => {
+    vscode.commands.executeCommand('workbench.view.extension.trueforge-sidebar');
+  });
+
   context.subscriptions.push(
     inlineEditCmd,
     cancelCmd,
-    vscode.window.registerWebviewViewProvider('trueforge.agentView', agentViewProvider)
+    openPanelCmd,
+    vscode.window.registerWebviewViewProvider('trueforge.agentView', agentViewProvider),
+    vscode.window.registerWebviewViewProvider('trueforge.agentViewExplorer', agentViewProvider)
   );
 }
 
