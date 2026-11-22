@@ -55,10 +55,12 @@ export function activate(context: vscode.ExtensionContext) {
           );
 
           if (choice === 'Accept Diff') {
-            await editorTools.applyHunk(proposedHunk.id);
+            await editor.edit((editBuilder) => {
+              editBuilder.replace(selection, result.fullProposal);
+            });
+            await editor.document.save();
             vscode.window.showInformationMessage(`Applied diff to ${proposedHunk.filePath}`);
           } else {
-            await editorTools.rejectHunk(proposedHunk.id);
             vscode.window.showInformationMessage(`Rejected diff. No changes made.`);
           }
         }
